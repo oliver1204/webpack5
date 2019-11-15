@@ -1,0 +1,16 @@
+{
+  "name": "webpack4",
+  "version": "1.0.0",
+  "description": "为了与webpack5形成对比，特在此加了webpack4",
+  "main": "index.js",
+  "author": "ziran.liu",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack"
+  }
+}

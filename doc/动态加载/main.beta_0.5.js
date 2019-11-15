@@ -114,15 +114,14 @@
     };
 
     __webpack_require__.f.j = (chunkId, promises) => {
-      // JSONP chunk loading for javascript
+      // 加载chunkId对应的代码块中的代码
       var installedChunkData = Object.prototype.hasOwnProperty.call(
         installedChunks,
         chunkId
       )
         ? installedChunks[chunkId]
         : undefined;
-      if (installedChunkData !== 0) {
-        // 0 means "already installed".
+      if (installedChunkData !== 0) {// 0 means "already installed".
 
         // a Promise means "currently loading".
         if (installedChunkData) {
@@ -136,7 +135,7 @@
             });
             promises.push((installedChunkData[2] = promise));
 
-            // start chunk loading
+            // start chunk loading 采用JSONP的形式加载所需文件
             var url = __webpack_require__.p + __webpack_require__.u(chunkId);
             var loadingEnded = () => {
               if (
@@ -148,6 +147,8 @@
                 if (installedChunkData) return installedChunkData[1];
               }
             };
+
+            // 建立一个脚本 SONP的形式
             var script = document.createElement("script");
             var onScriptComplete;
 

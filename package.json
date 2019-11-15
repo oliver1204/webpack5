@@ -5,6 +5,15 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^5.0.0-beta.3"
+    "webpack": "^5.0.0-beta.5"
+  },
+  "dependencies": {
+    "babel-generator": "^6.26.1",
+    "babel-traverse": "^6.26.0",
+    "babel-types": "^6.26.0",
+    "babylon": "^6.18.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "ejs": "^2.7.1",
+    "loadsh": "0.0.4"
   }
 }

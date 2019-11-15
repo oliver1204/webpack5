@@ -20,26 +20,18 @@
     if (__webpack_module_cache__[moduleId]) {
       return __webpack_module_cache__[moduleId].exports;
     }
-    // Create a new module (and put it into the cache)
     var module = (__webpack_module_cache__[moduleId] = {
       i: moduleId,
       l: false,
       exports: {}
     });
-
-    // Execute the module function
     __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-
-    // Flag the module as loaded
     module.l = true;
-
-    // Return the exports of the module
     return module.exports;
   }
 
   !(function() {
-    let hello = __webpack_require__(/*! ./hello */ "./src/hello.js");
+    let hello = __webpack_require__( "./src/hello.js");
     console.log(hello);
   })();
 })();
-//# sourceMappingURL=main.js.map
