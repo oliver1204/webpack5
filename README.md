@@ -223,7 +223,8 @@ webpack 主体是一个 compiler, 每次webpack在编译的时候会产生一个
 
 * [astexplorer](https://astexplorer.net/)
 * Javascript Parser 把代码转化为一颗抽象语法树（AST），这颗树定义了代码的结构，通过操作这棵树，我们可以精准的定位到声明语句、赋值语句、运算语句等等，实现对代码的分析、优化、变更等操作。
-![image](/Users/olifer/Desktop)
+
+[!image]()
 
 ### 5.2 工具
 
