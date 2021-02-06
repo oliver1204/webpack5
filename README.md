@@ -262,3 +262,65 @@ traverse(ast, {
 ## 6. 实现懒加载
 ### 6.1 src\index.js
 ### 6.2 zfpack.js
+
+## loader 编写
+
+loader也需要写成一个模块，一个基本的loader的写法：
+
+```js
+/**
+* source为原文件的字符串格式
+*/
+module.exports=function(source,map){
+    //对source进行解析
+    varexports=process(source);
+    return"module.exports = "+exports;
+}
+```
+
+是的，你没看错，一个loader就是这么简单。关键在于理解loader的机制——其实loader最后会创建一个模块，当我们require一个需要让loader的解析的文件之后，通过上面第7行的return——return里面的内容就是自动创建的模块的内容，跟平时自已写的模块的区别就在于这个要自己拼成一个js语法合法的字符串。
+
+## plugin 编写
+
+plugin组成：
+1.一个 JavaScript 命名函数。
+2. 在插件函数的 prototype 上定义一个 apply 方法。
+3. 指定一个绑定到 webpack 自身的事件钩子。
+4. 处理 webpack 内部实例的特定数据。
+5. 功能完成后调用 webpack 提供的回调。
+
+先说说webpack插件中的两位重要人物,Compiler和Compliation
+1. compiler 对象代表了完整的 webpack 环境配置。这个对象在启动 webpack 时被一次性建立，并配置好所有可操作的设置，包括 options，loader 和 plugin。当在 webpack 环境中应用一个插件时，插件将收到此 compiler 对象的引用。可以使用它来访问 webpack 的主环境。
+2. ompilation 对象代表了一次资源版本构建。当运行 webpack 开发环境中间件时，每当检测到一个文件变化，就会创建一个新的 compilation，从而生成一组新的编译资源。一个 compilation 对象表现了当前的模块资源、编译生成资源、变化的文件、以及被跟踪依赖的状态信息。compilation 对象也提供了很多关键时机的回调，以供插件做自定义处理时选择使用。
+
+```js
+///src/plugins/helloPlugin.js
+// 命名函数。
+function HelloPlugin(options) {
+    // 使用 options 设置插件实例……
+    console.log(options);
+}
+ 
+//插件函数的 prototype 上定义一个 apply 方法
+HelloPlugin.prototype.apply = compiler => {
+    //hooks
+     compiler.hooks.done.tap('HelloPlugin', status => {
+        console.log(status.toJson());
+ 
+    })
+    
+ 
+    // 设置回调来访问 compilation 对象：
+    //compiler.plugin('compilation', compilation => {
+ 
+        // 现在，设置回调来访问 compilation 中的步骤：
+       // compilation.plugin('optimize', () => {
+            console.log('optimize');
+        //})
+ 
+    //})
+}
+ 
+module.exports = HelloPlugin
+
+```
