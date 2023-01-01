@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^5.0.0-beta.7"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "babel-generator": "^6.26.1",
